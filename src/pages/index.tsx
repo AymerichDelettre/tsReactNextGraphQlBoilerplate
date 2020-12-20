@@ -9,8 +9,13 @@ const Index = () => {
     <>
       <NavBar />
       <div>Hello world</div>
-      {!data ? null : data.posts.map((p) => <div key={p.id}>{p.title}</div>)}
+      <br />
+      {!data ? (
+        <div>loading...</div>
+      ) : (
+        data.posts.map((p) => <div key={p.id}>{p.title}</div>)
+      )}
     </>
   );
 };
-export default withUrqlClient(createUrlqClient)(Index);
+export default withUrqlClient(createUrlqClient, { ssr: true })(Index);
